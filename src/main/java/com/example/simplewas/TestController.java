@@ -16,6 +16,7 @@ public class TestController {
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("이름", "임기원");
         resultMap.put("한줄요약", "적극적인 리더형 개발자");
+        // 테스트
         return resultMap;
     }
 }
