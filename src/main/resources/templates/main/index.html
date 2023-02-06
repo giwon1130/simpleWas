@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
+    <title>openlayers</title>
+</head>
+<body>
+<h2>오픈 레이어스 브이월드 배경지도 테스트</h2>
+<div id="map" class="map" style="width:100%;height:80%;"></div>
+<div><button onclick="test()">test</button></div>
+<script>
+    //브이월드 타일레이어 url 설정
+    var source =new ol.source.XYZ({
+        url: 'http://xdworld.vworld.kr:8080/2d/Base/201802/{z}/{x}/{y}.png'
+    });
+
+    //타일레이어 생성하기
+    var viewLayer = new ol.layer.Tile({
+        source:source
+    });
+
+    //overviewmap 생성하기
+    var overViewMapCtrl = new ol.control.OverviewMap({
+        layers: [
+            new ol.layer.Tile({
+                source: source,
+            })],
+        collapsed: false,
+    });
+
+    var view = new ol.View({
+        center:[14377556.389982047, 4186024.063626864],
+        zoom:14,
+    });
+
+    var mapView = new ol.Map({
+        target:"map", // 지도를 생성할 element 객체의 id 값,
+        layers:[viewLayer], //생성한 레이어 추가,
+        view:view,	//view 설정
+        controls: ol.control.defaults().extend([overViewMapCtrl])
+    });
+
+    var test = alert("test");
+</script>
+</body>
+</html>
